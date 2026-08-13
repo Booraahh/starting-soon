@@ -2,11 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>Starting Soon</title>
+
   <style>
     html, body {
       margin: 0;
+      padding: 0;
       width: 100%;
       height: 100%;
       background: #000;
@@ -15,9 +17,10 @@
 
     video {
       position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
       object-fit: cover;
       background: #000;
     }
@@ -25,8 +28,35 @@
 </head>
 
 <body>
-  <video autoplay muted loop playsinline>
-    <source src="EMPEZANDO%20STREAM.mp4" type="video/mp4">
+
+  <video
+    id="video"
+    autoplay
+    muted
+    playsinline
+    webkit-playsinline
+    preload="auto"
+    loop>
+
+    <source
+      src="https://raw.githubusercontent.com/Booraahh/starting-soon/main/EMPEZANDO%20STREAM.mp4"
+      type="video/mp4">
+
   </video>
+
+  <script>
+    const video = document.getElementById("video");
+
+    video.muted = true;
+    video.defaultMuted = true;
+
+    function playVideo() {
+      video.play().catch(() => {});
+    }
+
+    window.addEventListener("load", playVideo);
+    video.addEventListener("canplay", playVideo);
+  </script>
+
 </body>
 </html>
